@@ -1,0 +1,243 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <title>{% block titulo %}BLOG.DEV{% endblock titulo %}</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
+
+   <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+   <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+   <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+   <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+   <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extracss %}
+  {% endblock extracss %}
+ </head>
+ <body>
+
+ <div class="site-wrap">
+
+   <div class="site-mobile-menu">
+     <div class="site-mobile-menu-header">
+       <div class="site-mobile-menu-close mt-3">
+         <span class="icon-close2 js-menu-toggle"></span>
+       </div>
+     </div>
+     <div class="site-mobile-menu-body"></div>
+   </div>
+
+   <header class="site-navbar pt-3" role="banner">
+     <div class="container-fluid">
+       <div class="row align-items-center">
+
+         <div class="col-6 col-xl-6 logo">
+           <h1 class="mb-0"><a href="index.html" class="text-black h2 mb-0">BLOG.DEV</a></h1>
+         </div>
+
+         <div class="col-6 mr-auto py-3 text-right" style="position: relative; top: 3px;">
+           <div class="social-icons d-inline">
+               <a href="{{ sociales.facebook }}" target="_blank"><span class="icon-facebook"></span></a>
+               <a href="{{ sociales.twitter }}" target="_blank"><span class="icon-twitter"></span></a>
+               <a href="{{ sociales.instagram }}" target="_blank"><span class="icon-instagram"></span></a>
+           </div>
+           <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-xl-none"><span class="icon-menu h3"></span></a></div>
+         </div>
+
+         <div class="col-12 d-none d-xl-block border-top">
+           <nav class="site-navigation text-center " role="navigation">
+
+             <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block mb-0">
+               <li class="active"><a href="{% url 'base:index' %}">Inicio</a></li>
+               <li><a href="{% url 'base:generales' %}">Generales</a></li>
+               <li><a href="{% url 'base:videojuegos' %}">Videojuegos</a></li>
+               <li><a href="{% url 'base:formulario_contacto' %}">Contacto</a></li>
+             </ul>
+           </nav>
+         </div>
+       </div>
+   </header>
+
+{% block cuerpo %}
+   <div class="slide-one-item home-slider owl-carousel">
+     <div class="site-cover site-cover-sm same-height overlay" style="background-image: url({{ principal.imagen_referencial.url }});">
+       <div class="container">
+         <div class="row same-height align-items-center">
+           <div class="col-md-12 col-lg-6">
+             <div class="post-entry">
+               <span class="post-category text-white bg-success mb-3">{{ principal.categoria | upper }}</span>
+               <h2 class="mb-4"><a href="{% url 'base:detalle_post' principal.slug %}">{{ principal.titulo }}</a></h2>
+               <div class="post-meta align-items-center text-left">
+                 <figure class="author-figure mb-0 mr-3 float-left"><img src="{{ principal.autor.imagen_referencial.url }}" alt="Image" class="img-fluid"></figure>
+                 <span class="d-inline-block mt-1">Autor: {{ principal.autor }}</span>
+                 <span>{{ principal.fecha_publicacion }}</span>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+
+   <div class="site-section">
+     <div class="container">
+       <div class="row align-items-stretch retro-layout">
+         <div class="col-md-5">
+           <a href="{% url 'base:detalle_post' post1.slug %}" class="hentry img-1 h-100 gradient" style="background-image: url({{ post1.imagen_referencial.url }});">
+             <span class="post-category text-white bg-danger">{{ post1.categoria |upper }}</span>
+             <div class="text">
+               <h2>{{ post1.titulo }}</h2>
+               <span>{{ post1.fecha_publicacion }}</span>
+             </div>
+           </a>
+         </div>
+         <div class="col-md-7">
+           <a href="{% url 'base:detalle_post' post2.slug %}" class="hentry img-2 v-height mb30 gradient" style="background-image: url({{ post2.imagen_referencial.url }});">
+             <span class="post-category text-white bg-success">{{ post2.categoria |upper }}</span>
+             <div class="text text-sm">
+               <h2>{{ post2.titulo }}</h2>
+               <span>{{ post2.fecha_publicacion }}</span>
+             </div>
+           </a>
+
+           <div class="two-col d-block d-md-flex">
+             <a href="{% url 'base:detalle_post' post3.slug %}" class="hentry v-height img-2 gradient" style="background-image: url({{ post3.imagen_referencial.url }});">
+               <span class="post-category text-white bg-primary">{{ post3.categoria |upper }}</span>
+               <div class="text text-sm">
+                 <h2>{{ post3.titulo }}</h2>
+                 <span>{{ post3.fecha_publicacion }}</span>
+               </div>
+             </a>
+             <a href="{% url 'base:detalle_post' post4.slug %}" class="hentry v-height img-2 ml-auto gradient" style="background-image: url({{ post4.imagen_referencial.url }});">
+               <span class="post-category text-white bg-warning">{{ post4.categoria |upper }}</span>
+               <div class="text text-sm">
+                 <h2>{{ post4.titulo }}</h2>
+                 <span>{{ post4.fecha_publicacion }}</span>
+               </div>
+             </a>
+           </div>
+
+         </div>
+       </div>
+
+     </div>
+   </div>
+
+   <div class="site-section">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-6 mb-6 mb-lg-6">
+           <div class="section-heading mb-5 d-flex align-items-center">
+             <h2>{{ post_general.categoria | upper }}</h2>
+             <div class="ml-auto"><a href="{% url 'base:generales' %}" class="view-all-btn">VER TODOS</a></div>
+           </div>
+           <div class="entry2 mb-5">
+             <a href="{% url 'base:detalle_post' post_general.slug %}"><img src="{{ post_general.imagen_referencial.url }}" alt="Image" class="img-fluid rounded"></a>
+             <span class="post-category text-white bg-primary mb-3"></span>
+             <h2><a href="{% url 'base:detalle_post' post_general.slug %}"></a>{{ post_general.titulo }}</h2>
+             <div class="post-meta align-items-center text-left clearfix">
+               <figure class="author-figure mb-0 mr-3 float-left"><img src="{{ post_general.autor.imagen_referencial.url }}" alt="Image" class="img-fluid"></figure>
+               <span class="d-inline-block mt-1">POR <a href="#">{{ post_general.autor }}</a></span>
+               <span>{{ post_general.fecha_publicacion }}</span>
+             </div>
+             <p>{{ post_general.descripcion }}</p>
+           </div>
+        </div>
+        <div class="col-lg-6 mb-6 mb-lg-6">
+          <div class="section-heading mb-5 d-flex align-items-center">
+            <h2>{{ post_videojuegos.categoria | upper }}</h2>
+            <div class="ml-auto"><a href="{% url 'base:videojuegos' %}" class="view-all-btn">VER TODOS</a></div>
+          </div>
+          <div class="entry2 mb-5">
+            <a href="{% url 'base:detalle_post' post_general.slug %}"><img src="{{ post_videojuegos.imagen_referencial.url }}" alt="Image" class="img-fluid rounded"></a>
+            <span class="post-category text-white bg-primary mb-3"></span>
+            <h2><a href="{% url 'base:detalle_post' post_videojuegos.slug %}"></a>{{ post_videojuegos.titulo }}</h2>
+            <div class="post-meta align-items-center text-left clearfix">
+              <figure class="author-figure mb-0 mr-3 float-left"><img src="{{ post_videojuegos.autor.imagen_referencial.url }}" alt="Image" class="img-fluid"></figure>
+              <span class="d-inline-block mt-1">POR <a href="#">{{ post_videojuegos.autor }}</a></span>
+              <span>{{ post_videojuegos.fecha_publicacion }}</span>
+            </div>
+            <p>{{ post_videojuegos.descripcion }}</p>
+          </div>
+       </div>
+       </div>
+     </div>
+   </div>
+{% endblock cuerpo %}
+   <div class="site-footer">
+     <div class="container">
+       <div class="row mb-5">
+         <div class="col-md-4">
+           <h3 class="footer-heading mb-4">Nosotros</h3>
+           <p>{{ web.nosotros }}</p>
+         </div>
+         <div class="col-md-3 ml-auto">
+           <h3 class="footer-heading mb-4">Menú Rápido</h3>
+           <ul class="list-unstyled float-left">
+             <li><a href="{% url 'base:generales' %}">Generales</a></li>
+             <li><a href="{% url 'base:videojuegos' %}">Videojuegos</a></li>
+             <li><a href="{% url 'base:formulario_contacto' %}">Contacto</a></li>
+           </ul>
+         </div>
+         <div class="col-md-4">
+           <div class="mb-5">
+             <h3 class="footer-heading mb-4">SUSCRÍBETE</h3>
+             <form action="{% url 'base:suscribirse' %}" method="post" class="form-footer-subscribe">
+               {% csrf_token %}
+               <div class="form-group d-flex">
+                 <input type="text" class="form-control" name="correo">
+                 <button type="submit" class="btn btn-primary text-white">SUSCRIBIRSE</button>
+               </div>
+             </form>
+           </div>
+
+           <div>
+             <h3 class="footer-heading mb-4">Contáctanos</h3>
+             <p>
+               <a href="{{ sociales.facebook }}" target="_blank"><span class="icon-facebook pt-2 pr-2 pb-2 pl-0"></span></a>
+               <a href="{{ sociales.twitter }}" target="_blank"><span class="icon-twitter p-2"></span></a>
+               <a href="{{ sociales.instagram }}" target="_blank"><span class="icon-instagram p-2"></span></a>
+             </p>
+           </div>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-12 text-center">
+           <p>
+             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+             Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+             </p>
+         </div>
+       </div>
+     </div>
+   </div>
+
+ </div>
+
+ <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+ <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+ <script src="{% static 'js/jquery-ui.js' %}"></script>
+ <script src="{% static 'js/popper.min.js' %}"></script>
+ <script src="{% static 'js/bootstrap.min.js' %}"></script>
+ <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+ <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+ <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+ <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+ <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+ <script src="{% static 'js/aos.js' %}"></script>
+
+ <script src="{% static 'js/main.js' %}"></script>
+{% block extrajs %}
+{% endblock extrajs %}
+ </body>
+</html>

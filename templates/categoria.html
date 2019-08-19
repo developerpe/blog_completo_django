@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block titulo %} {{ categoria |upper }} | BLOG.DEV {% endblock titulo %}
+
+{% block cuerpo %}
+    <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url({{ categoria.imagen_referencial.url }});">
+      <div class="container">
+        <div class="row same-height justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div class="post-entry text-center">
+              <span class="post-category text-white bg-success mb-3">{{ categoria | upper }}</span>
+              <h1 class="mb-4"><a href="{{ request.build_absolute.url }}">{{ categoria | upper }}</a></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="site-section py-lg">
+      <div class="container">
+
+        <div class="row blog-entries element-animate mb-5">
+
+          <div class="col-md-12 col-lg-12 main-content">
+            {% for post in posts %}
+              <div class="entry2 mb-5">
+                <a href="{% url 'base:detalle_post' post.slug %}"><img src="{{ post.imagen_referencial.url }}" alt="Image" class="img-fluid rounded"></a>
+                <span class="post-category text-white bg-primary mb-3">{{ post.categoria }}</span>
+                <h2><a href="{% url 'base:detalle_post' post.slug %}">{{ post.titulo }}</a></h2>
+                <div class="post-meta align-items-center text-left clearfix">
+                  <figure class="author-figure mb-0 mr-3 float-left"><img src="{{ post.autor.imagen_referencial.url }}" alt="Image" class="img-fluid"></figure>
+                  <span class="d-inline-block mt-1">POR <a href="#">{{ post.autor }}</a></span>
+                  <span>{{ post.fecha_publicacion }}</span>
+                </div>
+                <p>{{ post.descripcion }}</p>
+              </div>
+            {% endfor %}
+            <div class="row text-center pt-5 border-top">
+              <div class="col-md-12">
+                <div class="custom-pagination">
+                  Página {{ posts.number }} de {{ posts.paginator.num_pages }}
+                  {% if posts.has_previous %}
+                  <li>
+                    <a href="?page={{ posts.previous_page_number }}">{{ posts.previous_page_number }}</a>
+                  </li>
+                  {% endif %}
+                  {% if posts.has_next %}
+                  <li>
+                    <a href="?page={{ posts.next_page_number }}">{{ posts.next_page_number }}</a>
+                  </li>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- END main-content -->
+
+        </div>
+      </div>
+    </section>
+{% endblock cuerpo %}
